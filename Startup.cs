@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace boardgames_web
 {
@@ -24,6 +25,10 @@ namespace boardgames_web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<db.boardgamesContext>(options => 
+                options.UseMySQL(Configuration.GetConnectionString("boardgamesConnection"))
+            );
+            
             services.AddControllers();
         }
 
