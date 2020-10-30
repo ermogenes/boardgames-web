@@ -28,7 +28,7 @@ namespace boardgames_web
             services.AddDbContext<db.boardgamesContext>(options => 
                 options.UseMySQL(Configuration.GetConnectionString("boardgamesConnection"))
             );
-            
+
             services.AddControllers();
         }
 
@@ -39,6 +39,9 @@ namespace boardgames_web
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
             app.UseRouting();
 
             app.UseAuthorization();
